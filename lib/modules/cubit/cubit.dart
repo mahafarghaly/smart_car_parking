@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -24,48 +23,10 @@ class ParkingCubit extends Cubit<ParkingStates> {
     Home(),
     ParkingScreen(),
   ];
-  //List<String> titles = ['Home', 'Parking Places'];
 
   void changeBottomNav(int index) {
     currentIndex = index;
     emit(ParkingChangeBottomNavState());
-  }
-
-  var selectDate;
-
-  void datePicker(context) {
-    showDatePicker(
-            context: context,
-            initialDate: DateTime.now(),
-            firstDate: DateTime(2022),
-            lastDate: DateTime(2050))
-        .then((value) {
-      if (value == null) {
-        selectDate = 'Select your Date'.toString();
-        emit(ChangeDatePickerState());
-      } else {
-        selectDate = value;
-        emit(ChangeDatePickerState());
-      }
-    });
-  }
-
-  var selectTime;
-
-  void timePicker(context) {
-    showTimePicker(
-      context: context,
-      initialTime: TimeOfDay.now(),
-      useRootNavigator: false,
-    ).then((value) {
-      if (value == null) {
-        selectDate = 'Select your Time'.toString();
-        emit(ChangeTimePickerState());
-      } else {
-        selectTime = value;
-        emit(ChangeTimePickerState());
-      }
-    });
   }
 
   late ParkingModel model;
